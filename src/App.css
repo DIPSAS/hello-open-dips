@@ -1,13 +1,25 @@
 html, body { 
         height: 100%;
+        background-color: #E1F9F9;
+        color: white;
 }
 #root { 
         height: 100%;
 } 
-.App { 
-        display: flex;
+
+.wrapper {
         align-items: center;
         justify-content: center;
+        display: flex;
         height: 100%;
+}
+
+.blue-info-card {
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        background-color: #050948;
+        width: 400px;
+        height: 400px;
 }
 

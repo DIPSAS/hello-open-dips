@@ -1,6 +1,3 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 import FHIR from "fhirclient"
 import { useEffect, useState } from 'react'
 import { R4 } from "@ahryman40k/ts-fhir-types";
@@ -25,7 +22,22 @@ const App = () => {
 		console.log(patient);
 	}, [patient]);
 
-	return <div className="App">{patient && <p>Hello {patient?.name![0].text}</p>}</div>;
+	return (
+		<div className="wrapper">
+			<div className="blue-info-card">
+				{patient && 
+				<div>
+					<p>Name: {patient?.name![0].text}</p>
+					<p>Gender: {patient?.gender!}</p>
+					<p>Birthdate: {patient?.birthDate!}</p>
+
+				</div>
+				}
+			</div>
+		</div>
+
+		
+	);
 };
 
 export default App;
