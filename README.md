@@ -1,6 +1,6 @@
 # Hello Open DIPS React App
 
-Start app
+To start the app, add your Open DIPS subscription key to `.env` and run 
 
 ```
 yarn start

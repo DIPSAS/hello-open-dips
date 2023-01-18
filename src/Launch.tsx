@@ -2,8 +2,6 @@ import FHIR from "fhirclient"
 
 const Launch = () => {
 
-        console.log("lol");
-
         FHIR.oauth2.authorize({
                 "iss": "https://api.dips.no/fhir",
                 "redirectUri": "/app",
