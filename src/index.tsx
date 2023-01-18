@@ -14,6 +14,7 @@ root.render(
         <Router>
                 <Routes>
                         <Route path='/' element={<Launch />} />
+                        <Route path='/app' element={<App />} />
                 </Routes>
         </Router>
 
