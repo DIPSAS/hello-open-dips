@@ -15,8 +15,6 @@ root.render(
                 <Routes>
                         <Route path='/' element={<Launch />} />
                 </Routes>
-                <App />
-
         </Router>
 
 );
