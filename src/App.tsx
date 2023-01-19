@@ -23,15 +23,6 @@ const App = () => {
                 console.log(patient);
         }, [patient]);
 
-        const getFormattedDate = () => {
-                const timestamp = Date.parse(patient?.birthDate!)
-                const dateObject = new Date(timestamp);
-
-                return dateObject.toString();
-
-        }
-
-
         return (
                 <>
                         <div className="logo"></div>
