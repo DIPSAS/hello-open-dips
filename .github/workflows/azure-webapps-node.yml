@@ -2,10 +2,7 @@ name: Deploy web app to Azure Static Web Apps
 
 on:
   push:
-    branches: [ $default-branch ]
-  pull_request:
-    types: [opened, synchronize, reopened, closed]
-    branches: [ $default-branch ]
+    branches: [ main ]
 
 env:
   APP_LOCATION: "/" # location of your client code
