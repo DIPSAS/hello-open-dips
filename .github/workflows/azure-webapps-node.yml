@@ -35,6 +35,15 @@ jobs:
             --resource-group ${{secrets.AZURE_RESOURCE_GROUP_NAME}} \
             --location "norwayeast"
 
+    - name: Create storage container
+      uses: azure/CLI@v1
+      with:
+        inlineScript: |
+            az storage container create --name ${{secrets.AZURE_STORAGE_CONTAINER_NAME}} \
+            --account-name ${{secrets.AZURE_STORAGE_ACCOUNT_NAME}} \
+            --resource-group ${{secrets.AZURE_RESOURCE_GROUP_NAME}} \
+            --public-access blob
+
     - name: Upload to blob storage
       uses: azure/CLI@v1
       with:
