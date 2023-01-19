@@ -52,7 +52,7 @@ jobs:
             az storage blob upload-batch \
             --account-name ${{secrets.AZURE_STORAGE_ACCOUNT_NAME}} \
             --auth-mode key \
-            --destination "$web" \
+            --destination '$web' \
             --source build 
 
     - name: logout
