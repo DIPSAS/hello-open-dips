@@ -1,51 +1,39 @@
-name: Deploy Hello Open DIPS app to Azure
+name: Deploy web app to Azure Static Web Apps
+
 on:
   push:
-    branches: [ "main" ]
-  workflow_dispatch:
+    branches: [ $default-branch ]
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches: [ $default-branch ]
+
+env:
+  APP_LOCATION: "/" # location of your client code
+  API_LOCATION: "api" # location of your api source code - optional
+  APP_ARTIFACT_LOCATION: "build" # location of client code build output
+  AZURE_STATIC_WEB_APPS_API_TOKEN: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }} # secret containing deployment token for your static web app
 
 permissions:
   contents: read
 
 jobs:
-  build-and-deploy:
+  build_and_deploy_job:
+    permissions:
+      contents: read # for actions/checkout to fetch code
+      pull-requests: write # for Azure/static-web-apps-deploy to comment on PRs
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
+    name: Build and Deploy Job
     steps:
-    - uses: actions/checkout@v3
-    - uses: azure/login@v1
-      with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ env.NODE_VERSION }}
-        cache: 'npm'
-
-    - name: yarn install and build static site
-      run: |
-        yarn install
-        yarn run build --if-present
-
-    - name: Create static web app
-      uses: azure/CLI@v1
-      with:
-        inlineScript: |
-            az staticwebapp create \
-                --name hello-open-dips \
-                --resource-group ${{secrets.AZURE_RESOURCE_GROUP_NAME}} \
-                --source https://github.com/DIPSAS/hello-open-dips \
-                --location "norwayeast" \
-                --branch main \
-                --app-location "." \
-                --output-location "build"  
-
-    - name: logout
-      run: |
-            az logout
-      if: always()
-#     - name: Purge CDN endpoint
-#       uses: azure/CLI@v1
-#       with:
-#         inlineScript: |
-#            az cdn endpoint purge --content-paths  "/*" --profile-name "CDN_PROFILE_NAME" --name "CDN_ENDPOINT" --resource-group "RESOURCE_GROUP"
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+      - name: Build And Deploy
+        id: builddeploy
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ env.AZURE_STATIC_WEB_APPS_API_TOKEN }} # secret containing api token for app
+          action: "upload"
+          app_location: ${{ env.APP_LOCATION }}
+          api_location: ${{ env.API_LOCATION }}
+          app_artifact_location: ${{ env.APP_ARTIFACT_LOCATION }}
