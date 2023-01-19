@@ -38,7 +38,8 @@ jobs:
                 --location "norwayeast" \
                 --branch main \
                 --app-location "." \
-                --login-with-github
+                --output-location "build"  
+
     - name: logout
       run: |
             az logout
