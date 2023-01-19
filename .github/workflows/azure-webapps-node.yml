@@ -35,6 +35,16 @@ jobs:
             --resource-group ${{secrets.AZURE_RESOURCE_GROUP_NAME}} \
             --location "norwayeast"
 
+    - name: "Enable static websites in storage account"
+      uses: azure/CLI@1
+      with: 
+        inlineScript: |
+          az storage blob service-properties update \
+          --account-name ${{secrets.AZURE_STORAGE_ACCOUNT_NAME}}  \
+          --static-website \
+          --404-document 404/index.html \
+          --index-document index.html
+
     - name: Create storage container
       uses: azure/CLI@v1
       with:
@@ -49,8 +59,10 @@ jobs:
       with:
         inlineScript: |
             az storage blob upload-batch --account-name ${{secrets.AZURE_STORAGE_ACCOUNT_NAME}} \
-            --auth-mode key \
-            -d '$web' -s build
+            --destination ${{secrets.AZURE_STORAGE_CONTAINER_NAME}} \
+            --source build \
+            --pattern *.* \
+            --auth-mode key 
     - name: logout
       run: |
             az logout
@@ -60,4 +72,3 @@ jobs:
 #       with:
 #         inlineScript: |
 #            az cdn endpoint purge --content-paths  "/*" --profile-name "CDN_PROFILE_NAME" --name "CDN_ENDPOINT" --resource-group "RESOURCE_GROUP"
-
