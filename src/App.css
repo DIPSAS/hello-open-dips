@@ -3,15 +3,17 @@ html, body {
         background-color: #E1F9F9;
         color: white;
 }
+
 #root { 
         height: 100%;
+        align-items: center;
+        justify-content: center;
 } 
 
 .wrapper {
         align-items: center;
         justify-content: center;
         display: flex;
-        height: 100%;
 }
 
 .text-wrapper {
@@ -33,9 +35,10 @@ html, body {
 }
 
 .logo {
-        margin: 40px;
-        height: 70px;
+        margin: 20px;
+        height: 35px;
         width: 288px;
+        background-size: contain;
         background-repeat: no-repeat;
         background-image: url("../public/open-dips-logo.png");
 }
@@ -47,9 +50,11 @@ html, body {
 .blue-info-card {
         align-items: center;
         justify-content: center;
+        text-align: center;
         display: flex;
         background-color: #050948;
         width: 400px;
         height: 400px;
+        filter: drop-shadow(0 0 0.7rem grey);
 }
 

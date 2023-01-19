@@ -7,7 +7,7 @@ const Launch = () => {
                 "redirectUri": "/app",
                 "client_id": "hello-open-dips-app",
                 "scope": "openid dips-fhir-r4 fhirUser patient/*.read offline_access",
-                "launch": "cdp2010024"
+                "launch": "cdp1000807"
         });
 
         return null;

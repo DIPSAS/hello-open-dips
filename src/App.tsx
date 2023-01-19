@@ -11,7 +11,7 @@ const App = () => {
 			.ready()
 			.then((client) =>
 				client.request({
-					url: "/Patient/cdp2010025",
+					url: "/Patient/cdp1000807",
 					headers: { "dips-subscription-key": process.env.REACT_APP_DIPS_SUBSCRIPTION_KEY! },
 				})
 			)
@@ -51,7 +51,7 @@ const App = () => {
 		</>
 
 
-		
+        	
 	);
 };
 
