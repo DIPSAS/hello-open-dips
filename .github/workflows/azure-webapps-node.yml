@@ -33,7 +33,8 @@ jobs:
         inlineScript: |
             az storage account create --name ${{secrets.AZURE_STORAGE_ACCOUNT_NAME}} \
             --resource-group ${{secrets.AZURE_RESOURCE_GROUP_NAME}} \
-            --location "norwayeast"
+            --location "norwayeast" \
+            --allow-blob-public-access
 
     - name: "Enable static websites in storage account"
       uses: azure/CLI@v1
@@ -43,6 +44,15 @@ jobs:
           --account-name ${{secrets.AZURE_STORAGE_ACCOUNT_NAME}}  \
           --static-website \
           --index-document index.html
+
+    - name: "Enable public access to $web container"
+      uses: azure/CLI@v1
+      with: 
+        inlineScript: |
+          az storage container set-permission \
+          --account-name ${{secrets.AZURE_STORAGE_ACCOUNT_NAME}}  \
+          --name '$web' \
+          --public-access blob
 
     - name: Upload static site to blob storage
       uses: azure/CLI@v1
