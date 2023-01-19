@@ -25,6 +25,18 @@ jobs:
       - uses: actions/checkout@v3
         with:
           submodules: true
+      - uses: azure/login@v1
+        with:
+            creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Set custom hostname for static web app
+        id: sethostname
+        uses: azure/cli@1
+        with:
+          inlineScript: | 
+            az staticwebapp hostname set \
+            --hostname hello.open.dips.no \
+            --name  hello-open-dips \
+            --no-wait
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
