@@ -40,8 +40,12 @@ jobs:
       with:
         inlineScript: |
             az storage blob upload-batch --account-name ${{secrets.AZURE_STORAGE_ACCOUNT_NAME}} \
+            --auth-mode key \
             -d '$web' -s build
-
+    - name: logout
+      run: |
+            az logout
+      if: always()
 #     - name: Purge CDN endpoint
 #       uses: azure/CLI@v1
 #       with:
