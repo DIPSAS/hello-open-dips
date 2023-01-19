@@ -27,43 +27,18 @@ jobs:
         yarn install
         yarn run build --if-present
 
-    - name: Create storage account  
+    - name: Create static web app
       uses: azure/CLI@v1
       with:
         inlineScript: |
-            az storage account create --name ${{secrets.AZURE_STORAGE_ACCOUNT_NAME}} \
-            --resource-group ${{secrets.AZURE_RESOURCE_GROUP_NAME}} \
-            --location "norwayeast" \
-            --allow-blob-public-access
-
-    - name: "Enable static websites in storage account"
-      uses: azure/CLI@v1
-      with: 
-        inlineScript: |
-          az storage blob service-properties update \
-          --account-name ${{secrets.AZURE_STORAGE_ACCOUNT_NAME}}  \
-          --static-website \
-          --index-document index.html
-
-    - name: "Enable public access to $web container"
-      uses: azure/CLI@v1
-      with: 
-        inlineScript: |
-          az storage container set-permission \
-          --account-name ${{secrets.AZURE_STORAGE_ACCOUNT_NAME}}  \
-          --name '$web' \
-          --public-access blob
-
-    - name: Upload static site to blob storage
-      uses: azure/CLI@v1
-      with:
-        inlineScript: |
-            az storage blob upload-batch \
-            --account-name ${{secrets.AZURE_STORAGE_ACCOUNT_NAME}} \
-            --auth-mode key \
-            --destination '$web' \
-            --source build 
-
+            az staticwebapp create \
+                --name hello-open-dips \
+                --resource-group ${{secrets.AZURE_RESOURCE_GROUP_NAME}} \
+                --source https://github.com/DIPSAS/hello-open-dips \
+                --location "norwayeast" \
+                --branch main \
+                --app-location "." \
+                --login-with-github
     - name: logout
       run: |
             az logout
