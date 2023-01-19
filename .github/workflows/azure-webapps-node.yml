@@ -42,7 +42,6 @@ jobs:
           az storage blob service-properties update \
           --account-name ${{secrets.AZURE_STORAGE_ACCOUNT_NAME}}  \
           --static-website \
-          --404-document 404/index.html \
           --index-document index.html
 
     - name: Upload static site to blob storage
