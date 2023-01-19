@@ -22,7 +22,7 @@ jobs:
         node-version: ${{ env.NODE_VERSION }}
         cache: 'npm'
 
-    - name: npm install, build, and test
+    - name: npm install and build static site
       run: |
         yarn install
         yarn run build --if-present
@@ -45,15 +45,16 @@ jobs:
           --404-document 404/index.html \
           --index-document index.html
 
-    - name: Upload to blob storage
+    - name: Upload static site to blob storage
       uses: azure/CLI@v1
       with:
         inlineScript: |
             az storage blob upload-batch --account-name ${{secrets.AZURE_STORAGE_ACCOUNT_NAME}} \
+            --auth-mode key \
             --destination "$web" \
             --source build \
-            --pattern *.* \
-            --auth-mode key 
+            --pattern "*.*" 
+
     - name: logout
       run: |
             az logout
