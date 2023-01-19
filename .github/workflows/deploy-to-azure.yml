@@ -16,7 +16,7 @@ permissions:
 jobs:
   build_and_deploy_job:
     environment: 
-      name: production
+      name: Production
       url: https://yellow-pebble-0346da410.2.azurestaticapps.net
     permissions:
       contents: read # for actions/checkout to fetch code
