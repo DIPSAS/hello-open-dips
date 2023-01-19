@@ -4,19 +4,17 @@ on:
     branches: [ "main" ]
   workflow_dispatch:
 
-env:
-  AZURE_WEBAPP_NAME: hello-open-dips
-  AZURE_WEBAPP_PACKAGE_PATH: '.'
-  NODE_VERSION: '18.x'
-
 permissions:
   contents: read
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+    - uses: azure/login@v1
+      with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - name: Set up Node.js
       uses: actions/setup-node@v3
@@ -29,31 +27,21 @@ jobs:
         yarn install
         yarn run build --if-present
 
-    - name: Upload artifact for deployment job
-      uses: actions/upload-artifact@v3
+    - name: Create storage account  
+      uses: azure/CLI@v1
       with:
-        name: node-app
-        path: build
+        inlineScript: |
+            az storage account create --name ${{secrets.AZURE_STORAGE_ACCOUNT_NAME}}  --resource-group ${{secrets.AZURE_RESOURCE_GROUP}}
 
-  deploy:
-    permissions:
-      contents: none
-    runs-on: ubuntu-latest
-    needs: build
-    environment:
-      name: 'Development'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-
-    steps:
-    - name: Download artifact from build job
-      uses: actions/download-artifact@v3
+    - name: Upload to blob storage
+      uses: azure/CLI@v1
       with:
-        name: node-app
+        inlineScript: |
+            az storage blob upload-batch --account-name ${{secret.STORAGE_ACCOUNT_NAME}}  --auth-mode key -d '$web' -s build
 
-    - name: 'Deploy to Azure WebApp'
-      id: deploy-to-webapp
-      uses: azure/webapps-deploy@v2
-      with:
-        app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+#     - name: Purge CDN endpoint
+#       uses: azure/CLI@v1
+#       with:
+#         inlineScript: |
+#            az cdn endpoint purge --content-paths  "/*" --profile-name "CDN_PROFILE_NAME" --name "CDN_ENDPOINT" --resource-group "RESOURCE_GROUP"
+
