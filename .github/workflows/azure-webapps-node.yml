@@ -31,7 +31,9 @@ jobs:
       uses: azure/CLI@v1
       with:
         inlineScript: |
-            az storage account create --name ${{secrets.AZURE_STORAGE_ACCOUNT_NAME}}  --resource-group ${{secrets.AZURE_RESOURCE_GROUP}}
+            az storage account create --name ${{secrets.AZURE_STORAGE_ACCOUNT_NAME}} \
+            --resource-group ${{secrets.AZURE_RESOURCE_GROUP_NAME}} \
+            --location "norwayeast"
 
     - name: Upload to blob storage
       uses: azure/CLI@v1
