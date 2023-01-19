@@ -30,7 +30,7 @@ jobs:
             creds: ${{ secrets.AZURE_CREDENTIALS }}
       - name: Set custom hostname for static web app
         id: sethostname
-        uses: azure/cli@1
+        uses: azure/CLI@1
         with:
           inlineScript: | 
             az staticwebapp hostname set \
