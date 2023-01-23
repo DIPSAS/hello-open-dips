@@ -40,7 +40,7 @@ html, body {
         width: 288px;
         background-size: contain;
         background-repeat: no-repeat;
-        background-image: url("../public/open-dips-logo.png");
+        background-image: url("../open-dips-logo.png");
 }
 
 .card-name {

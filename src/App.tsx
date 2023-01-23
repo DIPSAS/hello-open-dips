@@ -12,7 +12,7 @@ const App = () => {
                         .then((client) =>
                                 client.request({
                                         url: "/Patient/cdp1000807",
-                                        headers: { "dips-subscription-key": process.env.REACT_APP_DIPS_SUBSCRIPTION_KEY! },
+                                        headers: { "dips-subscription-key": import.meta.env.VITE_DIPS_SUBSCRIPTION_KEY },
                                 })
                         )
                         .then(setPatient)
