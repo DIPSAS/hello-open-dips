@@ -10,12 +10,17 @@ const Launch = () => {
                 iss = "https://api.dips.no/fhir"
         }
 
+        let launch = searchParams.get("launch")
+        if (!launch) {
+                launch = "cdp1000807"
+        }
+
         FHIR.oauth2.authorize({
                 "iss": iss,
                 "redirectUri": "/app",
                 "client_id": "hello-open-dips-app",
                 "scope": "openid dips-fhir-r4 fhirUser patient/*.read offline_access",
-                "launch": "cdp1000807"
+                "launch": launch
         });
 
         return null;
