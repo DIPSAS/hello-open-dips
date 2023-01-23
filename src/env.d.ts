@@ -1,7 +1,7 @@
 interface ImportMetaEnv {
-        readonly VITE_DIPS_SUBSCRIPTION_KEY: string;
+	readonly VITE_DIPS_SUBSCRIPTION_KEY: string;
 }
 
 interface ImportMeta {
-        readonly env: ImportMetaEnv;
+	readonly env: ImportMetaEnv;
 }
