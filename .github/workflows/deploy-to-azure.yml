@@ -50,4 +50,4 @@ jobs:
           api_location: ${{ env.API_LOCATION }}
           app_artifact_location: ${{ env.APP_ARTIFACT_LOCATION }}
         env: 
-          REACT_APP_DIPS_SUBSCRIPTION_KEY: '${{ secrets.VITE_DIPS_SUBSCRIPTION_KEY }}'
+          VITE_DIPS_SUBSCRIPTION_KEY: '${{ secrets.VITE_DIPS_SUBSCRIPTION_KEY }}'
