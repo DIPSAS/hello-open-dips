@@ -1,17 +1,19 @@
 import FHIR from "fhirclient"
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { R4 } from "@ahryman40k/ts-fhir-types";
 import { ReactComponent as ManIcon } from './man-icon.svg'
+import patientIdContext from "./patientIdContext";
 
 const App = () => {
 	const [patient, setPatient] = useState<R4.IPatient | undefined>();
+	const { patientId } = useContext(patientIdContext);
 
 	useEffect(() => {
 		FHIR.oauth2
 			.ready()
 			.then((client) =>
 				client.request({
-					url: "/Patient/cdp1000807",
+					url: "/Patient/" + patientId,
 					headers: { "dips-subscription-key": import.meta.env.VITE_DIPS_SUBSCRIPTION_KEY },
 				})
 			)
