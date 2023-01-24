@@ -1,51 +1,28 @@
-import FHIR from "fhirclient"
-import { useEffect, useState, useContext } from 'react'
-import { R4 } from "@ahryman40k/ts-fhir-types";
-import { ReactComponent as ManIcon } from './man-icon.svg'
+import { useContext } from "react";
+import { useEffect } from "react";
+import { useState } from "react";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import Launch from "./Launch";
+import Patient from "./Patient";
 import patientIdContext from "./patientIdContext";
 
-const App = () => {
-	const [patient, setPatient] = useState<R4.IPatient | undefined>();
-	const { patientId } = useContext(patientIdContext);
 
-	useEffect(() => {
-		FHIR.oauth2
-			.ready()
-			.then((client) =>
-				client.request({
-					url: "/Patient/" + patientId,
-					headers: { "dips-subscription-key": import.meta.env.VITE_DIPS_SUBSCRIPTION_KEY },
-				})
-			)
-			.then(setPatient)
-			.catch(console.error);
-	}, []);
+const App: React.FC = () => {
 
-	useEffect(() => {
-		console.log(patient);
-	}, [patient]);
+    const [patientId, setPatientId] = useState<string>("");
 
-	return (
-		<>
-			<div className="logo"></div>
-			<div className="wrapper">
-				<div className="blue-info-card">
-					{patient &&
-						<div className="text-wrapper">
-							<div className="person-icon">
-								<ManIcon />
-							</div>
-							<p className="card-name">{patient?.name![0].given} {patient?.name![0].family}</p>
-							<p>{patient?.name![0].given} {patient?.name![0].family} is a {patient?.gender!} patient born {patient?.birthDate!}. </p>
-						</div>
-					}
-				</div>
-			</div>
-		</>
+    return (
+        <patientIdContext.Provider value={{ patientId, setPatientId }} >
+            <Router>
+                <Routes>
+                    <Route path='/' element={<Launch />} />
+                    <Route path='/app' element={<Patient />} />
+                </Routes>
+            </Router>
 
+        </patientIdContext.Provider>
+);
 
-
-	);
-};
+}
 
 export default App;

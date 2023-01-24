@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import patientIdContext from "./patientIdContext";
 import { useContext } from 'react'
 
-const Launch = () => {
+const Launch:  React.FC  = () => {
 	const [searchParams] = useSearchParams();
 	const { setPatientId } = useContext(patientIdContext);
 
