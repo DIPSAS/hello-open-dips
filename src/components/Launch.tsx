@@ -1,11 +1,9 @@
 import FHIR from "fhirclient"
 import { useSearchParams } from 'react-router-dom';
-import patientIdContext from "./patientIdContext";
-import { useContext } from 'react'
+import patientIdContext from "../patientIdContext";
 
 const Launch:  React.FC  = () => {
 	const [searchParams] = useSearchParams();
-	const { setPatientId } = useContext(patientIdContext);
 
 	// Let user specify issuer (iss) in query param
 	let iss = searchParams.get("iss")
@@ -17,8 +15,6 @@ const Launch:  React.FC  = () => {
 	if (!launch) {
 		launch = "cdp1000807"
 	}
-
-	setPatientId(launch);
 
 	FHIR.oauth2.authorize({
 		"iss": iss,

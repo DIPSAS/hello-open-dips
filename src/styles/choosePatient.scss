@@ -1,0 +1,21 @@
+
+.choosePatientWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inputDialog {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    color: #262626;
+    width: 100%;
+    border: 1px solid #b6b7b9;
+    border-radius: 0.25rem;
+    outline: none;
+}

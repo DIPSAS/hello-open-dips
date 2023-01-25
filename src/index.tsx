@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import App from './components/App';
 import reportWebVitals from './reportWebVitals';
-import './App.css';
+import './styles/app.scss';
+import './styles/choosePatient.scss';
+import './styles/header.scss';
+import Header from './components/Header';
+
 
 
 const root = ReactDOM.createRoot(
@@ -13,6 +17,7 @@ const root = ReactDOM.createRoot(
 
 root.render(
         <React.StrictMode>
+                <Header />
                 <App />
         </React.StrictMode>,
 );
