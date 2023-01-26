@@ -2,7 +2,7 @@ import FHIR from "fhirclient"
 import { useSearchParams } from 'react-router-dom';
 import patientIdContext from "../patientIdContext";
 
-const Launch:  React.FC  = () => {
+const Launch: React.FC = () => {
 	const [searchParams] = useSearchParams();
 
 	// Let user specify issuer (iss) in query param
@@ -21,8 +21,12 @@ const Launch:  React.FC  = () => {
 		"redirectUri": "/app",
 		"client_id": "hello-open-dips-app",
 		"scope": "openid dips-fhir-r4 fhirUser patient/*.read offline_access",
-		"launch": launch
-	});
+		"launch": launch,
+	}).
+		then((response) => {
+		}).catch((error) => {
+			console.error("Failed to fetch FHIR Metadata page and SMART configuration from " + iss + "/Metadata");
+		});
 
 	return null;
 }
