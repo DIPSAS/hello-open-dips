@@ -1,3 +1,5 @@
+@import "variables.scss";
+
 
 .choosePatientWrapper {
     display: flex;
@@ -10,12 +12,68 @@
     justify-content: center;
     display: flex;
     flex-direction: column;
+    width: 500px;
+    height: 300px;
+    border-radius: 0.5rem;
+    border-color: $dips-dark-orange;
+    border-style: solid;
+
 }
 
+.inputLabel {
+    font-family: 'CircularStd';
+    color: #050948;
+    font-size: 18px;
+}
 input {
     color: #262626;
-    width: 100%;
+    width: 300px;
+    height: 40px;
     border: 1px solid #b6b7b9;
-    border-radius: 0.25rem;
+    border-radius: 0.50rem;
     outline: none;
+    font-size: 18px;
+    font-family: 'CircularStd';
+    margin-bottom: 40px;
+    margin-top: 15px;
+
+}
+
+input:focus {
+    border-color: $dips-primary-blue;
+}
+
+.dipsPrimaryButton {
+    font-family: $font-family-base;
+    height: 42px;
+    width: 150px;
+    text-align: center;
+    letter-spacing: 0.01em;
+    border-radius: 100px;
+    border-style: solid;
+    font-size: 20px;
+    border-color: $dips-turqouise;
+    color: $white;
+    background-color: $dips-primary-blue;
+    cursor: pointer;
+
+    &:active,
+    &:focus,
+    &:hover {
+        background-color: $dips-dark-orange;
+        color: #00149E;
+        text-decoration: none;
+    }
+}
+
+.buttonLink {
+    text-decoration: none;
+    color: white;
+    font-family: 'CircularStd';
+    font-size: 18px;
+}
+
+.inputField {
+    display: flex;
+    flex-direction: column;
 }

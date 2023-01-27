@@ -11,8 +11,11 @@ const ChoosePatient: React.FC = () => {
     return (
         <div className="choosePatientWrapper">
             <div className="inputDialog">
-                <input type="text" onChange={e => setPatientId(e.target.value)} />
-                <button><Link to={`/patient/${patientId}`}>Search</Link></button>
+                <div className="inputField">
+                    <label className="inputLabel">Search for a patient ID or SSN <br/>(eg. cdp1000807 or 13116900216)</label>
+                    <input type="text" onChange={e => setPatientId(e.target.value)} />
+                </div>
+                <button className="dipsPrimaryButton"><Link className="buttonLink" to={`/patient/${patientId}`}>Search</Link></button>
             </div>
         </div>
     )
