@@ -1,24 +1,42 @@
 
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import clientContext from "../context/clientContext";
 import ChoosePatient from "./ChoosePatient";
 import Launch from "./Launch";
 import Patient from "./Patient";
+import Client from "fhirclient/lib/Client";
+import { useEffect, useState } from "react";
+import FHIR from "fhirclient"
+
+
 
 
 
 const App: React.FC = () => {
 
+    const [client, setClient] = useState<Client>(undefined!);
+    
+    useEffect(() => {
+		FHIR.oauth2
+			.ready()
+			.then((client) => {
+                setClient(client)
+            })
+			.catch(console.error);
+	}, []);
 
     return (
-        <div className="wrapper">
-            <Router>
-                <Routes>
-                    <Route path='/' element={<Launch />} />
-                    <Route path='/app' element={<ChoosePatient />} />
-                    <Route path='/patient/:id' element={<Patient />} />
-                </Routes>
-            </Router>
-        </div>
+        <clientContext.Provider value={{ client: client, setClient: setClient }}>
+            <div className="wrapper">
+                <Router>
+                    <Routes>
+                        <Route path='/' element={<Launch />} />
+                        <Route path='/app' element={<ChoosePatient />} />
+                        <Route path='/patient/:id' element={<Patient />} />
+                    </Routes>
+                </Router>
+            </div>
+        </clientContext.Provider>
     );
 
 }

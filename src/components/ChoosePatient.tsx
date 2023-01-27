@@ -1,11 +1,25 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+
+import FHIR from "fhirclient"
+import clientContext from "../context/clientContext";
 
 
 
 const ChoosePatient: React.FC = () => {
 
     const [patientId, setPatientId] = useState<string>("");
+    const {client, setClient} = useContext(clientContext);
+
+    useEffect(() => {
+		FHIR.oauth2
+			.ready()
+			.then((client) => {setClient(client)})
+			.catch(console.error);
+	}, []);
+
+    useEffect(() => {console.log(client)}, [client])
+
 
 
     return (
