@@ -1,3 +1,5 @@
+@import 'variables.scss';
+
 .wrapper {
         align-items: center;
         justify-content: center;
@@ -21,8 +23,9 @@
         display: flex;
         color: white;
         height: 40px;
+        width: 40px;
         background-size: 100% 100%;
-        background-image: url("./assets/man-icon.svg");
+        background-image: url("../assets/man-icon.svg");
 }
 
 .logo {
@@ -44,4 +47,11 @@
         width: 400px;
         height: 400px;
         filter: drop-shadow(0 0 0.7rem grey);
+
+        p {
+            color: white;
+            font-family: 'CircularStd';
+            margin: 30px;
+    
+        }
 }

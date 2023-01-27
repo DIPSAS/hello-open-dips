@@ -18,8 +18,6 @@ const ChoosePatient: React.FC = () => {
 			.catch(console.error);
 	}, []);
 
-    useEffect(() => {console.log(client)}, [client])
-
 
 
     return (
