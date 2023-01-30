@@ -32,9 +32,16 @@ const Patient: React.FC = () => {
 						console.error
 					});
 			}
+
+			fetchPatient();
+		}
+	}, [client])
+
+	useEffect(() => {
+		if (patient?.id) {
 			async function fetchDocuments() {
 				await client.request({
-					url: `/DocumentReference?patient=${id}`,
+					url: `/DocumentReference?patient=${patient?.id}`,
 					headers: { "dips-subscription-key": import.meta.env.VITE_DIPS_SUBSCRIPTION_KEY },
 				})
 					.then((documents) => {
@@ -48,11 +55,9 @@ const Patient: React.FC = () => {
 					});
 			}
 			fetchDocuments();
-			fetchPatient();
 		}
-	}, [client])
 
-	console.log("Documents in Patient: " + documents?.total);
+	}, [patient])
 
 	if (loading) {
 		return <div>Loading...</div>
@@ -67,27 +72,32 @@ const Patient: React.FC = () => {
 			</div>);
 	}
 
-	return (
-		<div className="wrapper">
-			<div className="blue-info-card">
-				<div className="text-wrapper">
-					<i className="person-icon">
-					</i>
-					<p className="card-name">{patient?.name![0].given} {patient?.name![0].family}</p>
-					<p>{patient?.name![0].given} {patient?.name![0].family} is a {patient?.gender!} patient born {patient?.birthDate!}. </p>
+	if (patient && documents) {
+		return (
+			<div className="wrapper">
+				<div className="blue-info-card">
+					<div className="text-wrapper">
+						<i className="person-icon">
+						</i>
+						<p className="card-name">{patient?.name![0].given} {patient?.name![0].family}</p>
+						<p>{patient?.name![0].given} {patient?.name![0].family} is a {patient?.gender!} patient born {patient?.birthDate!}. </p>
+					</div>
 				</div>
+				<div className="blue-info-card">
+					<div className="text-wrapper">
+						<i className="document-icon">
+						</i>
+						<p className="card-name">Documents</p>
+						<p>{patient?.name![0].given} {patient?.name![0].family} has {documents?.total ? documents?.total : "0"} documents </p>
+					</div>
+				</div>
+	
 			</div>
+		);
+	};
 
-			<div className="blue-info-card">
-				<div className="text-wrapper">
-					<i className="document-icon">
-					</i>
-					<p className="card-name">Documents</p>
-					<p>{patient?.name![0].given} {patient?.name![0].family} has {documents?.total} documents </p>
-				</div>
-			</div>
-		</div>
-	);
+	return <></>;
+
 
 
 };
