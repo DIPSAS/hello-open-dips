@@ -1,5 +1,5 @@
 
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes, useNavigate } from "react-router-dom";
 import clientContext from "../context/clientContext";
 import ChoosePatient from "./ChoosePatient";
 import Launch from "./Launch";
@@ -15,6 +15,7 @@ import FHIR from "fhirclient"
 const App: React.FC = () => {
 
     const [client, setClient] = useState<Client>(undefined!);
+
     
     useEffect(() => {
 		FHIR.oauth2

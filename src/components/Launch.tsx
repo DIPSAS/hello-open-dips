@@ -13,7 +13,7 @@ const Launch: React.FC = () => {
 
 	let launch = searchParams.get("launch")
 	if (!launch) {
-		launch = "cdp1000807"
+		launch = ""
 	}
 
 	FHIR.oauth2.authorize({

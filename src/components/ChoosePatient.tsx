@@ -1,36 +1,58 @@
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import FHIR from "fhirclient"
 import clientContext from "../context/clientContext";
+import { StringDecoder } from "string_decoder";
 
 
 
 const ChoosePatient: React.FC = () => {
 
     const [patientId, setPatientId] = useState<string>("");
-    const {client, setClient} = useContext(clientContext);
+    const { client } = useContext(clientContext);
+    const navigate = useNavigate();
+
+    const renderPatient = (id: string) => {
+        navigate(`/patient/${id}`);
+    }
 
     useEffect(() => {
-		FHIR.oauth2
-			.ready()
-			.then((client) => {setClient(client)})
-			.catch(console.error);
-	}, []);
+        console.log(client);
+
+        if (client?.patient?.id) {
+            navigate(`/patient/${client.patient.id}`);
+        } 
 
 
 
-    return (
-        <div className="choosePatientWrapper">
-            <div className="inputDialog">
-                <div className="inputField">
-                    <label className="inputLabel">Search for a patient ID or SSN <br/>(eg. cdp1000807 or 13116900216)</label>
-                    <input type="text" onChange={e => setPatientId(e.target.value)} />
+    }, [client])
+
+    if(client) {
+        return (
+            <div className="choosePatientWrapper">
+                <div className="inputDialog">
+                    <div className="inputField">
+                        <label className="inputLabel">Search for a patient ID or SSN <br />(eg. cdp1000807 or 13116900216)</label>
+                        <input type="text" onChange={e => setPatientId(e.target.value)} />
+                    </div>
+                    <button className="dipsPrimaryButton"><Link className="buttonLink" to={`/patient/${patientId}`}>Search</Link></button>
                 </div>
-                <button className="dipsPrimaryButton"><Link className="buttonLink" to={`/patient/${patientId}`}>Search</Link></button>
             </div>
-        </div>
-    )
+        )
+    } else {
+        return <></>
+    }
+
+
+
+
+
+
+
+
+
+
 
 
 
