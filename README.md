@@ -10,7 +10,7 @@ patient, e.g. their date of birth and a list of documents in the EHR.
 
 If you'd only like to see how the app looks, go to
 [hello.open.dips.no](https://hello.open.dips.no). When asked for credentials you
-can use `OPENDIPS` as both username and password.
+can use `OPENDIPS` as both username and password. You can see more information about valid data to test with on [open.dips.no/data](https://open.dips.no/data) 
 
 # Run the app yourself
 

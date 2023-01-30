@@ -4,6 +4,7 @@ import clientContext from "../context/clientContext";
 import ChoosePatient from "./ChoosePatient";
 import Launch from "./Launch";
 import Patient from "./Patient";
+import NotFound from "./NotFound";
 import Client from "fhirclient/lib/Client";
 import { useEffect, useState } from "react";
 import FHIR from "fhirclient"
@@ -34,6 +35,7 @@ const App: React.FC = () => {
                         <Route path='/' element={<Launch />} />
                         <Route path='/app' element={<ChoosePatient />} />
                         <Route path='/patient/:id' element={<Patient />} />
+                        <Route path='*' element={<NotFound />}/>
                     </Routes>
                 </Router>
             </div>

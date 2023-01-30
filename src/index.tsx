@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import './styles/app.scss';
 import './styles/choosePatient.scss';
 import './styles/header.scss';
+import './styles/notfound.scss';
 import Header from './components/Header';
 
 
