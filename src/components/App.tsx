@@ -9,10 +9,6 @@ import Client from "fhirclient/lib/Client";
 import { useEffect, useState } from "react";
 import FHIR from "fhirclient"
 
-
-
-
-
 const App: React.FC = () => {
 
     const [client, setClient] = useState<Client>(undefined!);
@@ -41,7 +37,6 @@ const App: React.FC = () => {
             </div>
         </clientContext.Provider>
     );
-
 }
 
 export default App;

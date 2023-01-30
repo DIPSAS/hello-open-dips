@@ -1,4 +1,3 @@
-import FHIR from "fhirclient"
 import { useContext, useEffect, useState } from 'react'
 import { R4 } from "@ahryman40k/ts-fhir-types";
 import { useParams } from "react-router-dom";

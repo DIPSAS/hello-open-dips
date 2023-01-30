@@ -1,11 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
-import FHIR from "fhirclient"
 import clientContext from "../context/clientContext";
-import { StringDecoder } from "string_decoder";
-
-
 
 const ChoosePatient: React.FC = () => {
 
@@ -24,8 +19,6 @@ const ChoosePatient: React.FC = () => {
             navigate(`/patient/${client.patient.id}`);
         } 
 
-
-
     }, [client])
 
     if(client) {
@@ -43,19 +36,6 @@ const ChoosePatient: React.FC = () => {
     } else {
         return <></>
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 export default ChoosePatient;

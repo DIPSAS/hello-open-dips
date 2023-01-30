@@ -1,6 +1,5 @@
 @import "variables.scss";
 
-
 .choosePatientWrapper {
     display: flex;
     align-items: center;
@@ -17,7 +16,6 @@
     border-radius: 0.5rem;
     border-color: $dips-dark-orange;
     border-style: solid;
-
 }
 
 .inputLabel {
@@ -36,7 +34,6 @@ input {
     font-family: 'CircularStd';
     margin-bottom: 40px;
     margin-top: 15px;
-
 }
 
 input:focus {

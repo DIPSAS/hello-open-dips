@@ -4,7 +4,6 @@ interface IPatientIdContext {
 
 	patientId: string,
 	setPatientId: Dispatch<SetStateAction<string>>
-
 }
 
 const patientIdContext = createContext<IPatientIdContext>(undefined!);

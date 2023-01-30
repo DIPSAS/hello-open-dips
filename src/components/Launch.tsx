@@ -1,6 +1,5 @@
 import FHIR from "fhirclient"
 import { useSearchParams } from 'react-router-dom';
-import patientIdContext from "../patientIdContext";
 
 const Launch: React.FC = () => {
 	const [searchParams] = useSearchParams();

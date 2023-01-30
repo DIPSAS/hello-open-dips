@@ -9,8 +9,6 @@ import './styles/header.scss';
 import './styles/notfound.scss';
 import Header from './components/Header';
 
-
-
 const root = ReactDOM.createRoot(
 	document.getElementById('root') as HTMLElement
 );
