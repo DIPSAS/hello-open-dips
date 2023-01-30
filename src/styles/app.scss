@@ -23,6 +23,7 @@
     background-size: 100% 100%;
     background-image: url("../assets/man-icon.svg");
     margin: auto;
+    margin-top: 20px;
 }
 
 .document-icon {
@@ -31,16 +32,13 @@
     background-size: 100% 100%;
     background-image: url("../assets/document.svg");
     margin: auto;
+    margin-top: 20px;
 }
 
 .logo {
     margin: 20px;
     height: 35px;
     width: 288px;
-}
-
-.card-name {
-    font-size: x-large;
 }
 
 .blue-info-card {
@@ -57,7 +55,19 @@
     p {
         color: white;
         font-family: 'CircularStd';
-        margin: 30px;
+        margin: 20px;
 
+    }
+
+    .card-name {
+        margin-top: 30px;
+        font-size: x-large;
+    }
+}
+
+
+@media(max-width:800px) {
+    .wrapper {
+        flex-direction: column;
     }
 }
