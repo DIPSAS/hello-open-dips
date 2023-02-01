@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { KeyboardEvent, useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import clientContext from "../context/clientContext";
 
@@ -17,6 +17,12 @@ const ChoosePatient: React.FC<{ clientLoading: boolean }> = ({ clientLoading }) 
 		}
 	}, [client]);
 
+	const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+		if (event.key === 'Enter') {
+			renderPatient(patientId)
+		}
+	};
+
 	if (client) {
 		return (
 			<div className="choosePatientWrapper">
@@ -26,7 +32,10 @@ const ChoosePatient: React.FC<{ clientLoading: boolean }> = ({ clientLoading }) 
 							Search for a patient ID or SSN{" "}
 							<br />(eg. cdp1000807 or 13116900216)
 						</label>
-						<input type="text" onChange={(e) => setPatientId(e.target.value)} />
+						<input type="text"
+							onChange={(e) => setPatientId(e.target.value)}
+							onKeyDown={(e) => handleKeyDown(e)}
+						/>
 					</div>
 					<button className="dipsPrimaryButton">
 						<Link className="buttonLink" to={`/patient/${patientId}`}>
