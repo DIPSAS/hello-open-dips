@@ -1,5 +1,9 @@
-
-import { Route, BrowserRouter as Router, Routes, useNavigate } from "react-router-dom";
+import {
+	BrowserRouter as Router,
+	Route,
+	Routes,
+	useNavigate,
+} from "react-router-dom";
 import clientContext from "../context/clientContext";
 import ChoosePatient from "./ChoosePatient";
 import Launch from "./Launch";
@@ -7,22 +11,24 @@ import Patient from "./Patient";
 import NotFound from "./NotFound";
 import Client from "fhirclient/lib/Client";
 import { useEffect, useState } from "react";
-import FHIR from "fhirclient"
+import FHIR from "fhirclient";
 
 const App: React.FC = () => {
-
 	const [client, setClient] = useState<Client>(undefined!);
-
+	const [loading, setLoading] = useState<boolean>(false);
 
 	useEffect(() => {
+		setLoading(true);
 		FHIR.oauth2
 			.ready()
 			.then((client) => {
-				console.log("hei");
-				console.log(client);
-				setClient(client)
+				setLoading(false);
+				setClient(client);
 			})
-			.catch(console.error);
+			.catch((error) => {
+				setLoading(false);
+				console.log(error);
+			});
 	}, []);
 
 	return (
@@ -30,15 +36,15 @@ const App: React.FC = () => {
 			<div className="wrapper">
 				<Router>
 					<Routes>
-						<Route path='/' element={<Launch />} />
-						<Route path='/app' element={<ChoosePatient />} />
-						<Route path='/patient/:id' element={<Patient />} />
-						<Route path='*' element={<NotFound />} />
+						<Route path="/" element={<Launch />} />
+						<Route path="/app" element={<ChoosePatient clientLoading={loading} />} />
+						<Route path="/patient/:id" element={<Patient />} />
+						<Route path="*" element={<NotFound />} />
 					</Routes>
 				</Router>
 			</div>
 		</clientContext.Provider>
 	);
-}
+};
 
 export default App;
