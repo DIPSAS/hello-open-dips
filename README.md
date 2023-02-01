@@ -25,8 +25,8 @@ $ git clone https://github ...
 
 2. Go to open.dips.no/profile and grab the a subscription key to our APIs. The
 	 app needs the subscription key to be able to call our APIs. 
-3. Put the subscription key in the `.env` file. 
-4. Build and run the app with `npm`. 
+3. Replace the subscription key in the `.env` file. 
+4. Build and run the app with `npm`. PS: You'll need to download and install [Node.js](https://nodejs.org/en/) first! 
 
 ```
 $ npm install
