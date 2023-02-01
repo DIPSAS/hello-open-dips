@@ -47,7 +47,7 @@ input:focus {
     text-align: center;
     letter-spacing: 0.01em;
     border-radius: 100px;
-    border-style: solid;
+		border-style: none;
     font-size: 20px;
     border-color: $dips-turqouise;
     color: $white;
@@ -55,9 +55,11 @@ input:focus {
     cursor: pointer;
 
     &:active,
-    &:focus,
+    &:focus {
+			border-style: fill;
+		}
     &:hover {
-        background-color: $dips-dark-orange;
+        background-color: $dips-dark-blue;
         color: #00149E;
         text-decoration: none;
     }

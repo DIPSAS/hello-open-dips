@@ -11,32 +11,34 @@ import FHIR from "fhirclient"
 
 const App: React.FC = () => {
 
-    const [client, setClient] = useState<Client>(undefined!);
+	const [client, setClient] = useState<Client>(undefined!);
 
-    
-    useEffect(() => {
+
+	useEffect(() => {
 		FHIR.oauth2
 			.ready()
 			.then((client) => {
-                setClient(client)
-            })
+				console.log("hei");
+				console.log(client);
+				setClient(client)
+			})
 			.catch(console.error);
 	}, []);
 
-    return (
-        <clientContext.Provider value={{ client: client, setClient: setClient }}>
-            <div className="wrapper">
-                <Router>
-                    <Routes>
-                        <Route path='/' element={<Launch />} />
-                        <Route path='/app' element={<ChoosePatient />} />
-                        <Route path='/patient/:id' element={<Patient />} />
-                        <Route path='*' element={<NotFound />}/>
-                    </Routes>
-                </Router>
-            </div>
-        </clientContext.Provider>
-    );
+	return (
+		<clientContext.Provider value={{ client: client, setClient: setClient }}>
+			<div className="wrapper">
+				<Router>
+					<Routes>
+						<Route path='/' element={<Launch />} />
+						<Route path='/app' element={<ChoosePatient />} />
+						<Route path='/patient/:id' element={<Patient />} />
+						<Route path='*' element={<NotFound />} />
+					</Routes>
+				</Router>
+			</div>
+		</clientContext.Provider>
+	);
 }
 
 export default App;
