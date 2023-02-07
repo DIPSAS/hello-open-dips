@@ -22,8 +22,12 @@ const App: React.FC = () => {
 		FHIR.oauth2
 			.ready()
 			.then((client) => {
-				setLoading(false);
-				setClient(client);
+				const updateClient = async() => {
+					setClient(client)
+				}
+				updateClient().then(() => {
+					setLoading(false)
+				})
 			})
 			.catch((error) => {
 				setLoading(false);
