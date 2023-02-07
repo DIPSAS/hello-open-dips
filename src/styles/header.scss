@@ -7,6 +7,20 @@
     background-image: url("../open-dips-logo.png");
 }
 
+.github-logo {
+    margin: 40px;
+    height: 60px;
+    width: 60px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("../github-mark.png");
+}
+
+.float-right {
+    margin-left: auto;
+    order: 2;
+}
+
 .mainHeader {
     display: flex;
 }
