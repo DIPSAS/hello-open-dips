@@ -3,7 +3,7 @@
 Thanks for checking out our Hello World SMART on FHIR app that connects to our
 DIPS sandbox, [Open DIPS](https://open.dips.no)! In short this application
 showcases how you can build a SMART on FHIR app that works with DIPS Arena.
-It's a patient-spoecific app which fetches some basic information about the
+It's a patient-specific app which fetches some basic information about the
 patient, e.g. their date of birth and a list of documents in the EHR. 
 
 # Try the app
