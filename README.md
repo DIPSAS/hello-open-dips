@@ -6,6 +6,8 @@ showcases how you can build a SMART on FHIR app that works with DIPS Arena.
 It's a patient-specific app which fetches some basic information about the
 patient, e.g. their date of birth and a list of documents in the EHR. 
 
+![Screenshot of the app](public/screenshot.png)
+
 # Try the app
 
 If you'd only like to see how the app looks, go to
@@ -23,7 +25,7 @@ To run this app yourself,
 $ git clone https://github ... 
 ```
 
-2. Go to open.dips.no/profile and grab the a subscription key to our APIs. The
+2. Go to open.dips.no/profile and grab the subscription key to our APIs. The
 	 app needs the subscription key to be able to call our APIs. 
 3. Replace the subscription key in the `.env` file. 
 4. Build and run the app with `npm`. PS: You'll need to download and install [Node.js](https://nodejs.org/en/) first! 
