@@ -38,7 +38,7 @@ const ChoosePatient: React.FC<{ clientLoading: boolean }> = ({ clientLoading }) 
 				<div className={styles.inputDialog}>
 					<div className={styles.inputField}>
 						<label className={styles.inputLabel}>
-							Search for a patient ID or SSN plz work {" "}
+							Search for a patient ID or SSN {" "}
 							<br />(eg. cdp1000807 or 13116900216)
 						</label>
 						<input type="text"
