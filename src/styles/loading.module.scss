@@ -1,0 +1,30 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  svg {
+    animation: spin 1s linear infinite;
+  }
+}
+
+.strokeStyle {
+  stroke: $dips-dark-blue
+}
+
+.fillStyle {
+  fill: $dips-primary-blue
+}
