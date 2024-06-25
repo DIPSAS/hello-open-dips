@@ -1,0 +1,26 @@
+.logo {
+    margin: 30px;
+    height: 75px;
+    width: 288px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("../public/open-dips-logo-blue.png");
+}
+
+.github-logo {
+    margin: 40px;
+    height: 60px;
+    width: 60px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("../public/github-mark.png");
+}
+
+.float-right {
+    margin-left: auto;
+    order: 2;
+}
+
+.mainHeader {
+    display: flex;
+}

@@ -1,0 +1,160 @@
+@import "mixins.scss";
+@import "variables.scss";
+
+.patientWrapper {
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 20px; 
+    border-radius: 50px;
+    margin: auto; 
+
+}
+
+.section {
+    margin-top: 10px;
+    padding: 20px;
+    flex: 1 1 45%;
+    box-sizing: border-box;
+    min-width: 200px;
+    height: auto;
+    border-radius: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+    background-color: $dips-dark-blue;
+
+}
+
+.section h2 {
+    margin-bottom: 10px;
+    color: #ccc;
+    font-size: 1.2em;
+}
+
+.patientInfo {
+    margin-bottom: 20px;
+}
+
+.relatedPersonsList {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 25px; 
+}
+
+.relatedPersonsList li {
+    flex: 1 1 calc(33% - 20px);
+    box-sizing: border-box;
+    margin: 10px 0; 
+}
+
+.infoCard {
+    background-color: $dips-dark-blue;
+    padding: 7px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    height: 100%;
+    color: #fff; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+
+}
+
+.expanded {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: auto;
+    z-index: 1000;
+    background-color: $dips-dark-blue;
+    padding: 20px;
+    border-radius: 50px;
+    border: 2px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #fff;
+}
+
+.additionalInfo {
+    margin-top: 10px;
+}
+
+.text-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center; 
+}
+
+.person-icon {
+    height: 40px;
+    width: 40px;
+    background-size: 100% 100%;
+    background-image: url("../assets/man-icon.svg");
+    margin-bottom: 10px;
+}
+
+.popupOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .popupContent {
+    background-color: $dips-dark-blue;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .popupContent h2 {
+    margin-top: 0;
+  }
+  
+  .popupContent form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .popupContent form input {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .button {
+    padding: 10px;
+    border: none;
+    border-radius: 50px;
+    background-color: $dips-primary-blue;
+    color: #fff;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .button:hover {
+    background-color: $dips-dark-blue;
+  }
+
+  .goBack{
+    padding-left: 20px;
+    margin: auto;
+    width: 90%;
+  }
