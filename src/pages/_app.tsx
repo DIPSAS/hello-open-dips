@@ -9,7 +9,7 @@ import clientContext from "../context/clientContext";
 
 function MyApp({ Component, pageProps }: AppProps) {
     const [client, setClient] = useState<Client>(undefined!);
-    const [loading, setLoading] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(true);
 
 	useEffect(() => {
 		setLoading(true);
@@ -33,7 +33,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <clientContext.Provider value={{ client: client, setClient: setClient }}>
 		<Header/>
         <div className="wrapper">
-            <Component {...pageProps}>
+            <Component {...pageProps} clientLoading={loading}>
             </Component>
         </div>
         </clientContext.Provider>
