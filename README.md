@@ -31,7 +31,7 @@ $ git clone https://github ...
 4. Build and run the app with `npm`. PS: You'll need to download and install [Node.js](https://nodejs.org/en/) first! 
 
 ```
-$ npm instal
+$ npm install
 $ npm run build
 $ npm run start 
 ``` 
