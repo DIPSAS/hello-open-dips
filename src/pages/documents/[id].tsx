@@ -104,8 +104,10 @@ const Documents: React.FC = () => {
     
     if(documents){
         if(documents.entry){
-            return (
-                <div className={styles.total}>
+            if(documents.total){
+
+                return (
+                    <div className={styles.total}>
                     <div className={styles.goBack}>
                     <PatientOverview patientId={patientId as string}/></div>
                     <div className={styles.metaDataBox}>
@@ -125,7 +127,7 @@ const Documents: React.FC = () => {
                             </p>
                         </div>
                     </div>
-                    {loading && 
+                    {(loading || !document) && currentDocumentID && !documentLoadError &&
                     <span className={loadingstyles.loader}>
                         <Spinner />
                     </span>}
@@ -133,10 +135,16 @@ const Documents: React.FC = () => {
                     <div className={styles.documentViewer}>
                         <iframe src={`data:application/pdf;base64,${document}`}/>
                     </div>}
-                    {!currentDocumentID && !loading && !documentLoadError &&
+                    {!currentDocumentID && !loading && !documentLoadError && documents.total > 0 &&
                     <div className={styles.documentInfo}>
                     <p>
                         Please select a document 
+                    </p>
+                    </div>}
+                    {!currentDocumentID && !loading && !documentLoadError && documents.total == 0 &&
+                    <div className={styles.documentInfo}>
+                    <p>
+                        There is no documents here
                     </p>
                     </div>}
                     {loading == false && currentDocumentID && documentLoadError &&
@@ -155,16 +163,51 @@ const Documents: React.FC = () => {
                         
                     </div>
                     }
+                    
                 </div>
             )
+            }
+            else{
+                return (
+                <div className={styles.total}>
+                    <div className={styles.goBack}>
+                        <PatientOverview patientId={patientId as string}/>
+                    </div>
+                    <div className={styles.documentInfo}>
+                        <p>
+                            There is no documents here
+                        </p>
+                    </div>
+                </div>)
+            }
         }
         else{
-            return <></>
+            return (
+            <div className={styles.total}> 
+                <div className={styles.goBack}>
+                        <PatientOverview patientId={patientId as string}/>
+                </div>
+                <div className={styles.documentInfo}>
+                    <p>
+                        Could not get any documents assosiated with the patient
+                    </p>
+                </div>
+            </div>)
         }
-
+        
     }
     else if (!loading){
-        return <h1> Could not find documents related to {patientId}</h1>
+        return(
+            <div className={styles.total}> 
+                <div className={styles.goBack}>
+                        <PatientOverview patientId={patientId as string}/>
+                </div>
+                <div className={styles.documentInfo}>
+                    <p>
+                        Could not find documents related to {patientId}
+                    </p>
+                </div>
+            </div>) 
     }
     else if (loading){
         return (
