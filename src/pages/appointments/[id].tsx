@@ -80,7 +80,6 @@ if (!patient) {
   );
 }
 
-// console.log(appointments?.total)
 
 if(patient && appointments && encounters){
 
