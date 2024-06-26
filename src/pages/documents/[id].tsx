@@ -129,7 +129,7 @@ const Documents: React.FC = () => {
                     <span className={loadingstyles.loader}>
                         <Spinner />
                     </span>}
-                    {loading == false && currentDocumentID && !documentLoadError &&
+                    {loading == false && currentDocumentID && !documentLoadError && document &&
                     <div className={styles.documentViewer}>
                         <iframe src={`data:application/pdf;base64,${document}`}/>
                     </div>}
