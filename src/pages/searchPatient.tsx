@@ -55,8 +55,11 @@ const ChoosePatient: React.FC<{ clientLoading: boolean }> = ({ clientLoading }) 
 				<div className="text-wrapper">
 					<p>Missing access!</p>
 					<p>Please restart the app and allow access to all resources.</p>
-					<button className="dipsPrimaryButton">
-					</button>
+					<Link href={{ pathname: `/`}} className="default-link">
+							<button className={styles.dipsPrimaryButton} >
+								Re-authenticate
+							</button>
+						</Link>
 				</div>
 			</div>
 		);
