@@ -4,31 +4,25 @@ import { useRouter } from 'next/router'
 import styles from '../styles/searchPatient.module.scss';
 import Link from "next/link";
 
-import { R4 } from "@ahryman40k/ts-fhir-types";
-
 
 const ChoosePatient: React.FC<{ clientLoading: boolean }> = ({ clientLoading }) => {
 	const [patientId, setPatientId] = useState<string>("");
 	const { client } = useContext(clientContext);
 	const navigate = useRouter();
-    const [loading, setLoading] = useState<boolean>(false);
 
 
-	const renderEverything = (id: string) =>
-	{
-		navigate.push(`/patient/${id}`);
-	}
-
-
+	// Search for active patient if any patient is active
 	useEffect(() => {
 		if (client?.patient?.id) {
 			navigate.push(`/patient/${client.patient.id}`);
 		}
 	}, [client, navigate]);
 
+
+	// Search for patient on pressed enter key
 	const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
 		if (event.key === 'Enter') {
-			renderEverything(patientId)
+			navigate.push(`/patient/${patientId}`);
 		}
 	};
 
@@ -46,11 +40,11 @@ const ChoosePatient: React.FC<{ clientLoading: boolean }> = ({ clientLoading }) 
 							onKeyDown={(e) => handleKeyDown(e)}
 						/>
 					</div>
-						<Link href={{ pathname: `/patient/${patientId}`}} className="default-link">
-							<button className={styles.dipsPrimaryButton} >
-								Submit
-							</button>
-						</Link>
+					<Link href={{ pathname: `/patient/${patientId}`}} className="default-link">
+						<button className={styles.dipsPrimaryButton} >
+							Submit
+						</button>
+					</Link>
 				</div>
 			</div>
 		);
@@ -61,8 +55,11 @@ const ChoosePatient: React.FC<{ clientLoading: boolean }> = ({ clientLoading }) 
 				<div className="text-wrapper">
 					<p>Missing access!</p>
 					<p>Please restart the app and allow access to all resources.</p>
-					<button className="dipsPrimaryButton">
-					</button>
+					<Link href={{ pathname: `/`}} className="default-link">
+							<button className={styles.dipsPrimaryButton} >
+								Re-authenticate
+							</button>
+						</Link>
 				</div>
 			</div>
 		);

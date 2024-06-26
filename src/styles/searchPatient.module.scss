@@ -17,6 +17,7 @@
     border-color: $dips-dark-blue;
     border-style: solid;
     border-width: 2px;
+    background-color: white;
 }
 
 .inputLabel {
@@ -29,17 +30,19 @@
     color: #262626;
     width: 300px;
     height: 40px;
-    border: 1px solid #b6b7b9;
+    border: 1px solid $neutral-black;
     border-radius: 0.50rem;
     outline: none;
     font-size: 18px;
     font-family: 'CircularStd';
     margin-bottom: 40px;
     margin-top: 15px;
-}
+    background-color: whitesmoke;
 
-.inputField input:focus {
-    border-color: $dips-primary-blue;
+    &:focus {
+        background-color: white;
+        border: 1px solid $dips-primary-blue;
+    }
 }
 
 .dipsPrimaryButton {
