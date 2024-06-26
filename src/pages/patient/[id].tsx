@@ -12,7 +12,7 @@ const Patient: React.FC = () => {
   const [patient, setPatient] = useState<R4.IPatient | undefined>();
   const [documents, setDocuments] = useState<R4.IBundle | undefined>();
   const [conditions, setConditions] = useState<R4.IBundle | undefined>();
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
   const [appointments, setAppointments] = useState<R4.IBundle | undefined>(); 
   const [encounters, setEncounters] = useState<R4.IBundle | undefined>(); 
 
@@ -198,7 +198,6 @@ if(patient && !loading && documents && appointments && encounters){
 
 		return (
 			<div className="wrapper">
-				
 				<BlueInfoCard
 					icon="person-icon"
 					title={`${patient?.name![0].given} ${patient?.name![0].family}`}
