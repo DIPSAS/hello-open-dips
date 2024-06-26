@@ -125,7 +125,7 @@ const Documents: React.FC = () => {
                             </p>
                         </div>
                     </div>
-                    {loading && 
+                    {(loading || !document) && currentDocumentID && !documentLoadError &&
                     <span className={loadingstyles.loader}>
                         <Spinner />
                     </span>}
@@ -155,6 +155,7 @@ const Documents: React.FC = () => {
                         
                     </div>
                     }
+                    
                 </div>
             )
         }
