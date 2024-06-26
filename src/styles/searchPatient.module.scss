@@ -74,6 +74,38 @@
     }
 }
 
+.dipsSecondaryButton {
+    font-family: 'CircularStd';
+    box-shadow: 0 0 25px 1px rgba(0, 0, 0, 0.2);
+    min-height: 30px;
+    height: fit-content;
+    min-width: 30px;
+    width: fit-content;
+    text-align: center;
+    letter-spacing: 0.01em;
+    border-radius: 100px;
+    border-style: none;
+    font-size: 14px;
+    font-weight: bold;
+    color: $white;
+    background-color: rgba(209, 27, 27, 0.619);
+    cursor: pointer;
+
+    padding: 10px;
+    padding-inline: 20px;
+
+    &:active,
+    &:focus {
+        border-style: fill;
+    }
+
+    &:hover {
+        background-color: rgba(209, 27, 27);
+        color: white;
+        text-decoration: none;
+    }
+}
+
 .buttonLink {
     text-decoration: none;
     color: white;
