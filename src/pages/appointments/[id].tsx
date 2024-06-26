@@ -80,6 +80,8 @@ if (!patient) {
   );
 }
 
+// console.log(appointments?.total)
+
 if(patient && appointments && encounters){
 
     return (
@@ -111,7 +113,7 @@ if(patient && appointments && encounters){
               <AppointmentsEncountersInfo title= "Appointments" onClose={handleCloseList}>
                 <ul className={styles.appointmentList}>
                   <div> 
-                    <ul className={styles.appointmentWrapper}>
+                    {appointments?.total && <ul className={styles.appointmentWrapper}>
                       {appointments?.entry?.map((entry) => {
                         const resource = entry.resource as R4.IAppointment;
                         const display = getDisplayFromExtensions(resource.extension); 
@@ -124,7 +126,8 @@ if(patient && appointments && encounters){
                         </li>
                       );
                     })}
-                    </ul>
+                    </ul>}
+                    {!appointments?.total && <p className="conditions-error">The patient has no appointments.</p>}
                   </div>
                 </ul>
               </AppointmentsEncountersInfo>
@@ -136,7 +139,7 @@ if(patient && appointments && encounters){
               <AppointmentsEncountersInfo title="Encounters" onClose={handleCloseList}>
                 <ul className={styles.encounterList}>
                 <div>
-                  <ul className={styles.appointmentWrapper}>
+                  {encounters?.total && <ul className={styles.appointmentWrapper}>
                     {encounters?.entry?.map((entry) => {
                       const resource = entry.resource as R4.IEncounter; 
                       return (
@@ -149,7 +152,8 @@ if(patient && appointments && encounters){
                         </li>
                       )
                     })}
-                  </ul>
+                  </ul>}
+                  {!encounters?.total && <p className="conditions-error">The patient has no encounters.</p>}
                 </div>
                 </ul>
               </AppointmentsEncountersInfo>
