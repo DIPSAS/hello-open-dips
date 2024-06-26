@@ -51,7 +51,6 @@ const Patient: React.FC = () => {
     if (!extensions) return 'No details available';
     for (let i = 0; i < extensions.length; i++) {
       const extension = extensions?.[i];
-      // console.log(extension);
       if (extension.valueCodeableConcept?.coding) {
         for (let j = 0; j < extension.valueCodeableConcept.coding.length; j++) {
           const coding = extension.valueCodeableConcept?.coding?.[j];
