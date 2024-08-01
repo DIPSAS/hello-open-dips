@@ -1,3 +1,4 @@
+import { url } from "inspector";
 import { NextApiRequest, NextApiResponse } from "next";
 
 type ResponseData = 
@@ -13,7 +14,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     const serverUrl = req.body.client.state.serverUrl
     const URL = serverUrl + `/Patient/${patientId}`
     const accessToken = req.body.client.state.tokenResponse.access_token
-
+    console.log(URL);
+    console.log(accessToken);
     //make request to serverUrl/patient/${id} with accesstoken
     const result = await fetch(URL,
         {

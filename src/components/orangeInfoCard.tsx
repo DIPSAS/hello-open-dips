@@ -15,7 +15,7 @@ export default function OrangeInfoCard (props: CardProps) {
             <div className="text-wrapper">
                 <p>No patient found with ID: {patientId}</p>
                 <button className="dipsPrimaryButton">
-                    <Link className="buttonLink" href={`/searchPatient`}>
+                    <Link className="buttonLink" href={`/`}>
                         Return to search
                     </Link>
                 </button>
