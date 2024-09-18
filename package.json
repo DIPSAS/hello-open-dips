@@ -11,7 +11,7 @@
   "dependencies": {
     "@ahryman40k/ts-fhir-types": "^4.0.39",
     "fhirclient": "^2.5.3",
-    "next": "14.2.4",
+    "next": "14.2.10",
     "next-link": "^2.0.0",
     "react": "^18",
     "react-dom": "^18",
