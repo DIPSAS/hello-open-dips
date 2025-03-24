@@ -11,10 +11,10 @@
   "dependencies": {
     "@ahryman40k/ts-fhir-types": "^4.0.39",
     "fhirclient": "^2.5.3",
-    "next": "14.2.4",
+    "next": "^14.2.25",
     "next-link": "^2.0.0",
-    "react": "^18",
-    "react-dom": "^18",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-router-dom": "^6.23.1",
     "sass": "^1.77.6"
   },
@@ -23,7 +23,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
-    "eslint-config-next": "14.2.4",
+    "eslint-config-next": "^14.2.25",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
